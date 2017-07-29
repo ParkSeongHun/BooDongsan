@@ -5,14 +5,12 @@ class User_model extends CI_Model{
     }
     # .. 모든 회원 조회
     public function gets(){
-    return $this->db->query("SELECT * FROM users")->result();
+      return $this->db->query("SELECT * FROM users")->result();
     }
-    # .. 회원가입
+    public function login($option){
+      return $this->db->get_where('users', array('user_id'=>$option['user_id']));
+    }
     public function add($data){
       return $this->db->insert('users',$data);
-    }
-    # .. 로그인
-    public function login($email){
-      return $this->db->get_where('users', array('user_id' => $email));
     }
 }
